@@ -1,0 +1,21 @@
+﻿<Window x:Class="TheMovies.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TheMovies"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label Name="TitleLbl" Content="{Binding Title, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="100,53,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="TitleTB" HorizontalAlignment="Left" Margin="100,136,0,0" TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=LostFocus}" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="DurationTB"  HorizontalAlignment="Left" Margin="100,183,0,0" TextWrapping="Wrap" Text="{Binding Duration, UpdateSourceTrigger=LostFocus}" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="GenreTB" HorizontalAlignment="Left" Margin="100,238,0,0" TextWrapping="Wrap" Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="{Binding Title, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,132,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Duration, UpdateSourceTrigger=LostFocus}" HorizontalAlignment="Left" Margin="395,179,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="395,234,0,0" VerticalAlignment="Top"/>
+        <Button Name="SaveBtn" Content="Gem" Command="{Binding SaveCommand}" HorizontalAlignment="Left" Margin="524,371,0,0" VerticalAlignment="Top" Width="75" Height="30"/>
+        <Button Name="CancelBtn" Content="Annuler" Command="{Binding CancelCommand}" HorizontalAlignment="Left" Margin="644,371,0,0" VerticalAlignment="Top" Height="30" Width="75" Click="CancelBtn_Click"/>
+
+    </Grid>
+</Window>
