@@ -13,28 +13,29 @@ namespace TheMovies.Model
 		public string Title
 		{
 			get { return title; }
-			set { title = value; }
+			private set { title = value; }
 		}
 		private TimeSpan duration;
 
 		public TimeSpan Duration
 		{
 			get { return duration; }
-			set { duration = value; }
+			private set { duration = value; }
 		}
 		private string genre;
 
 		public string Genre
 		{
 			get { return genre; }
-			set { genre = value; }
+			private set { genre = value; }
 		}
-		Movie(string Title, TimeSpan Duration, string Genre)
+		public Movie(string Title, TimeSpan Duration, string Genre)
 		{
 			this.title = Title;
 			this.duration = Duration;
 			this.genre = Genre;
 		}
-		Movie() : this("Ny Film", TimeSpan.Zero, "Genre") { }
+		public Movie() : this("Ny Film", TimeSpan.Zero, "Genre") { }
+		public string GetMovie() { return @"{Title}, {Duration}, {Genre}"; }
 	}
 }

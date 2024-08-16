@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TheMovies.MVVM
 {
-    internal class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         // [CallerMemberName] gør at man ikke behøver at skrive property name, når man kalder metoden.

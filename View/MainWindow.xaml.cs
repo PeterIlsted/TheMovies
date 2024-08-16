@@ -32,5 +32,10 @@ namespace TheMovies
         {
             this.Close();
         }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

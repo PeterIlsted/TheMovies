@@ -11,9 +11,9 @@ using TheMovies.MVVM;
 
 namespace TheMovies.ViewModel
 {
-    internal class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
-
+        Movie movie;
         private string _title = "Ny Film.";
         
         public string Title 
@@ -55,7 +55,7 @@ namespace TheMovies.ViewModel
         public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => filled() == true);
         public void Save() 
         {
-            //Movie movie = new Movie(Title, Duration, Genre);
+            movie = new Movie(Title, Duration, Genre);
             
         }
     }
