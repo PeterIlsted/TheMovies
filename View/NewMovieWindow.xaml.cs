@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheMovies.Model;
 using TheMovies.ViewModel;
 
 namespace TheMovies
@@ -19,12 +20,14 @@ namespace TheMovies
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NewMovieWindow : Window
     {
-        public MainWindow()
+        public NewMovieViewModel vm = new NewMovieViewModel();
+        MovieRepoViewModel rvm;
+        object movie { get; set; }
+        public NewMovieWindow()
         {
             InitializeComponent();
-            MainWindowViewModel vm = new MainWindowViewModel();
             DataContext = vm;
         }
 
@@ -35,7 +38,13 @@ namespace TheMovies
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            movie = vm.Save();
+            DialogResult = true;
+        }
+        public object GetMovie() 
+        {
+            
+            return movie;
         }
     }
 }
