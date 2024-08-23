@@ -14,7 +14,7 @@
         <Label Content="{Binding Title, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,132,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding Duration, UpdateSourceTrigger=LostFocus}" HorizontalAlignment="Left" Margin="395,179,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="395,234,0,0" VerticalAlignment="Top"/>
-        <Button Name="SaveBtn" Content="Gem" Command="{Binding SaveCommand}" HorizontalAlignment="Left" Margin="524,371,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="SaveBtn_Click"/>
+        <Button Name="SaveBtn" Content="Gem" Command="{Binding SaveCommand}" IsDefault="True" HorizontalAlignment="Left" Margin="524,371,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="SaveBtn_Click"/>
         <Button IsCancel="True" Name="CancelBtn" Content="Annuler" Command="{Binding CancelCommand}" HorizontalAlignment="Left" Margin="644,371,0,0" VerticalAlignment="Top" Height="30" Width="75" Click="CancelBtn_Click"/>
 
     </Grid>

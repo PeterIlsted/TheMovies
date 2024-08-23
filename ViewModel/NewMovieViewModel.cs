@@ -60,7 +60,7 @@ namespace TheMovies.ViewModel
         }
 
         public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => filled() == true);
-        public object Save() 
+        public Movie Save() 
         {
             movie = new Movie(Title, Duration, Genre);
             return movie;

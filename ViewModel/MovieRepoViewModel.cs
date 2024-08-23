@@ -11,16 +11,25 @@ namespace TheMovies.ViewModel
 {
     public class MovieRepoViewModel : ViewModelBase
     {
-        private ObservableCollection<object> _movieRepo;
+        private ObservableCollection<Movie> _movieRepo;
         public MovieRepoViewModel()
         {
-            _movieRepo = new ObservableCollection<object>();
+            _movieRepo = new ObservableCollection<Movie>();
         }
-        public ObservableCollection<object> MovieRepo { get { return _movieRepo; } }
+        public ObservableCollection<Movie> MovieRepo { get { return _movieRepo; } }
+        private Movie _selectedItem;
 
-        public object SelectedMovie { get; set; }
+        public Movie SelectedMovie 
+        {
+            get {  return _selectedItem; } 
+            set 
+            { 
+                _selectedItem = value; 
+                OnPropertyChanged();
+            } 
+        }
 
-        public void AddMovie(object movie)
+        public void AddMovie(Movie movie)
         {
             SelectedMovie = movie;
             _movieRepo.Add(movie);
@@ -28,12 +37,12 @@ namespace TheMovies.ViewModel
         }
 
 
-        public object EditMovie(object movie)
+        public Movie EditMovie(Movie movie)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteMovie(object movie)
+        public void DeleteMovie(Movie movie)
         {
             _movieRepo.Remove(movie);
         }

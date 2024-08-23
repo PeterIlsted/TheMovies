@@ -24,7 +24,7 @@ namespace TheMovies
     {
         public NewMovieViewModel vm = new NewMovieViewModel();
         MovieRepoViewModel rvm;
-        object movie { get; set; }
+        Movie movie { get; set; }
         public NewMovieWindow()
         {
             InitializeComponent();
@@ -41,7 +41,7 @@ namespace TheMovies
             movie = vm.Save();
             DialogResult = true;
         }
-        public object GetMovie() 
+        public Movie GetMovie() 
         {
             
             return movie;

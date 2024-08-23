@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheMovies.ViewModel;
+using TheMovies.Model;
 
 namespace TheMovies.View
 {
@@ -20,7 +21,7 @@ namespace TheMovies.View
     /// </summary>
     public partial class MovieRepoWindow : Window
     {
-        public object movie;
+        public Movie movie;
         NewMovieWindow movieWindow;
         MovieRepoViewModel vm = new MovieRepoViewModel();
         NewMovieViewModel nvm;
