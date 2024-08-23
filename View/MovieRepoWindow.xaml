@@ -25,13 +25,14 @@
                     <DataGridTextColumn Header="Genre" Binding="{Binding Genre}" Width="4*"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Label Name="SelectedMovieTitle" Content="{Binding SelectedMovie.Title}" HorizontalAlignment="Left" Margin="647,118,0,0" VerticalAlignment="Top"/>
+            <Label Name="SelectedMovieTitle" Content="{Binding SelectedMovie.Title}" HorizontalAlignment="Left" Margin="646,145,0,0" VerticalAlignment="Top"/>
+            <Label Name="SelectedMovieIndex" Content="{Binding SelectedIndex}" HorizontalAlignment="Left" Margin="667,159,0,0" VerticalAlignment="Top"/>
 
 
         </Grid>
         <Grid Grid.Row="1" Background="violet">
-            <Button Content="Rediger" Name="EditMovieBtn" Background="MediumPurple" Height="25" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="668,0,0,0" ></Button>
-            <Button Content="Slet" Name="DeleteBtn" Command="{Binding DeleteMovie}" Height="25" Width="75" HorizontalAlignment="Left" Margin="400,15,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <Button Content="Rediger" Name="EditMovieBtn" Command="{Binding EditCommand}" Background="MediumPurple" Height="25" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="668,0,0,0" ></Button>
+            <Button Content="Slet" Name="DeleteBtn" Command="{Binding DeleteCommand}" Height="25" Width="75" HorizontalAlignment="Left" Margin="400,15,0,0" Grid.Row="1" VerticalAlignment="Top"/>
             <Button Content="Ny Film" Name="NewMovieBtn" Height="25" Width="75" HorizontalAlignment="Left" Margin="532,15,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"/>
 
         </Grid>

@@ -11,13 +11,23 @@ namespace TheMovies.ViewModel
 {
     public class MovieRepoViewModel : ViewModelBase
     {
-        private ObservableCollection<Movie> _movieRepo;
+        public ObservableCollection<Movie> MovieRepo { get; set; }
         public MovieRepoViewModel()
         {
-            _movieRepo = new ObservableCollection<Movie>();
+            MovieRepo = new ObservableCollection<Movie>();
         }
-        public ObservableCollection<Movie> MovieRepo { get { return _movieRepo; } }
+        
         private Movie _selectedItem;
+        private int _selectedIndex;
+        public int SelectedIndex 
+        { 
+            get { return _selectedIndex; } 
+            set 
+            { 
+                _selectedIndex = MovieRepo.IndexOf(SelectedMovie);
+                OnPropertyChanged(nameof(SelectedMovie));
+            }
+        }
 
         public Movie SelectedMovie 
         {
@@ -32,7 +42,7 @@ namespace TheMovies.ViewModel
         public void AddMovie(Movie movie)
         {
             SelectedMovie = movie;
-            _movieRepo.Add(movie);
+            MovieRepo.Add(movie);
             
         }
 
@@ -42,12 +52,12 @@ namespace TheMovies.ViewModel
             throw new NotImplementedException();
         }
 
-        public void DeleteMovie(Movie movie)
+        public void DeleteMovie()
         {
-            _movieRepo.Remove(movie);
+            MovieRepo.Remove(SelectedMovie);
         }
 
-        public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteMovie(SelectedMovie), CanExecute => SelectedMovie != null);
+        public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteMovie(), CanExecute => SelectedMovie != null);
         public RelayCommand EditCommand => new RelayCommand(execute => EditMovie(SelectedMovie), canExecute => SelectedMovie != null);
         public RelayCommand NewCommand => new RelayCommand(execute => AddMovie(SelectedMovie));
     }
