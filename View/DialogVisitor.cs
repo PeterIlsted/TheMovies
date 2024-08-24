@@ -9,6 +9,7 @@ namespace TheMovies.View
 {
     internal class DialogVisitor : ViewModel.DialogVisitor
     {
+        // Created a DialogVisitor interface, inspired by the Visitor pattern, to allow the MovieRepoVM to instantiate new Dialog windows through the View layer.
         public Movie DynamicVisit(Movie data) 
         {
             return Visit(data);

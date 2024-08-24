@@ -7,15 +7,33 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Label Name="TitleLbl" Content="{Binding Title, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="100,53,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="TitleTB" HorizontalAlignment="Left" Margin="100,136,0,0" TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=LostFocus}" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="DurationTB"  HorizontalAlignment="Left" Margin="100,183,0,0" TextWrapping="Wrap" Text="{Binding Duration, UpdateSourceTrigger=LostFocus}" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="GenreTB" HorizontalAlignment="Left" Margin="100,238,0,0" TextWrapping="Wrap" Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="{Binding Title, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,132,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding Duration, UpdateSourceTrigger=LostFocus}" HorizontalAlignment="Left" Margin="395,179,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="395,234,0,0" VerticalAlignment="Top"/>
-        <Button Name="SaveBtn" Content="Gem" Command="{Binding SaveCommand}" IsDefault="True" HorizontalAlignment="Left" Margin="524,371,0,0" VerticalAlignment="Top" Width="75" Height="30" Click="SaveBtn_Click"/>
-        <Button IsCancel="True" Name="CancelBtn" Content="Annuler" Command="{Binding CancelCommand}" HorizontalAlignment="Left" Margin="644,371,0,0" VerticalAlignment="Top" Height="30" Width="75" Click="CancelBtn_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
 
+        <Grid Grid.Row="0" Grid.Column="0" Background="LavenderBlush">
+            <Label Name="TitleLbl" Content="{Binding Title, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,53,0,0"/>
+            <TextBox Name="TitleTB" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=LostFocus}" VerticalAlignment="Center" Width="120"/>
+            <TextBox Name="DurationTB"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Duration, UpdateSourceTrigger=LostFocus}" VerticalAlignment="Top" Width="120" Margin="0,114,0,0"/>
+            <TextBox Name="GenreTB" HorizontalAlignment="Center" Margin="0,239,0,0" TextWrapping="Wrap" Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1" Background="LavenderBlush">
+            <Label Content="{Binding Title, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,114,0,0"/>
+            <Label Content="{Binding Duration, UpdateSourceTrigger=LostFocus}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Content="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,239,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" Background="Violet">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name="SaveBtn" Content="Gem" Command="{Binding SaveCommand}" IsDefault="True"  Margin="0,0,5,0" Width="75" Height="30" Click="SaveBtn_Click" />
+                <Button IsCancel="True" Name="CancelBtn" Content="Annuler" Command="{Binding CancelCommand}" Margin="0,0,5,0" Height="30" Width="75" Click="CancelBtn_Click" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" Background="Violet"/>
     </Grid>
 </Window>

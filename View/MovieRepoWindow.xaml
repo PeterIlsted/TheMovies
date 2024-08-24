@@ -25,7 +25,6 @@
                     <DataGridTextColumn Header="Genre" Binding="{Binding Genre}" Width="4*"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Label Name="SelectedMovieTitle" Content="{Binding SelectedMovie.Title}" HorizontalAlignment="Left" Margin="646,145,0,0" VerticalAlignment="Top"/>
 
 
         </Grid>
