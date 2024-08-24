@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TheMovies.Model;
 using TheMovies.ViewModel;
 
 namespace TheMovies
@@ -22,12 +21,11 @@ namespace TheMovies
     /// </summary>
     public partial class NewMovieWindow : Window
     {
-        public NewMovieViewModel vm = new NewMovieViewModel();
-        MovieRepoViewModel rvm;
-        Movie movie { get; set; }
+        
         public NewMovieWindow()
         {
             InitializeComponent();
+            NewMovieViewModel vm = new NewMovieViewModel();
             DataContext = vm;
         }
 
@@ -38,13 +36,7 @@ namespace TheMovies
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            movie = vm.Save();
             DialogResult = true;
-        }
-        public Movie GetMovie() 
-        {
-            
-            return movie;
         }
     }
 }

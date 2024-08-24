@@ -55,7 +55,7 @@ namespace TheMovies.ViewModel
         }
         private bool filled()
         {
-            if (Title != "Ny Film." && Duration != TimeSpan.Zero && Genre != null) { return true; }
+            if (Title != "Ny Film" && Duration != TimeSpan.Zero && Genre != "Genre") { return true; }
             else return false;
         }
 

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheMovies.ViewModel;
-using TheMovies.Model;
+using System.Linq.Expressions;
 
 namespace TheMovies.View
 {
@@ -21,29 +21,13 @@ namespace TheMovies.View
     /// </summary>
     public partial class MovieRepoWindow : Window
     {
-        public Movie movie;
-        NewMovieWindow movieWindow;
-        MovieRepoViewModel vm = new MovieRepoViewModel();
-        NewMovieViewModel nvm;
         public MovieRepoWindow()
         {
             InitializeComponent();
+            DialogVisitor visitor = new DialogVisitor();
+            MovieRepoViewModel vm = new MovieRepoViewModel(visitor);
             
             DataContext = vm;
-
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e) // new movie button
-        {
-            movieWindow = new NewMovieWindow();
-            movieWindow.ShowDialog();
-            if(movieWindow.DialogResult == true)
-            {
-                movie = movieWindow.GetMovie();
-                vm.AddMovie(movie);
-                movieWindow.Close();
-            }
-        }
-
     }
 }

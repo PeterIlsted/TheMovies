@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\MovieRepoViewModel.cs" />
+    <Compile Include="View\DialogVisitor.cs" />
     <Compile Include="View\MovieRepoWindow.xaml.cs">
       <DependentUpon>MovieRepoWindow.xaml</DependentUpon>
     </Compile>
