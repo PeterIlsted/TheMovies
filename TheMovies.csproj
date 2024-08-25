@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Model\MovieRepository.cs" />
     <Compile Include="ViewModel\MovieRepoViewModel.cs" />
     <Compile Include="View\DialogVisitor.cs" />
     <Compile Include="View\MovieRepoWindow.xaml.cs">

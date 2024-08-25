@@ -17,10 +17,14 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="0" Background="LavenderBlush">
-            <Label Name="TitleLbl" Content="{Binding Title, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,53,0,0"/>
-            <TextBox Name="TitleTB" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=LostFocus}" VerticalAlignment="Center" Width="120"/>
-            <TextBox Name="DurationTB"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Duration, UpdateSourceTrigger=LostFocus}" VerticalAlignment="Top" Width="120" Margin="0,114,0,0"/>
-            <TextBox Name="GenreTB" HorizontalAlignment="Center" Margin="0,239,0,0" TextWrapping="Wrap" Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <Label Name="TitleLbl" Content="{Binding Title, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,25,0,0"/>
+                <Label Name="MovieIdLbl" Content="{Binding Id}" HorizontalAlignment="Center" Margin="0,25"/>
+                <TextBox x:Name="TitleTB"  TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=LostFocus}" Height="25" Width="120" Margin="0,25,0,0"/>
+                <TextBox x:Name="DurationTB" TextWrapping="Wrap" Text="{Binding Duration, UpdateSourceTrigger=LostFocus}" Height="25" Width="120" Margin="0,25,0,0"/>
+                <TextBox Name="GenreTB" TextWrapping="Wrap" Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" Height="25" Width="120" Margin="0,25,0,0"/>
+            </StackPanel>
+            
 
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Background="LavenderBlush">

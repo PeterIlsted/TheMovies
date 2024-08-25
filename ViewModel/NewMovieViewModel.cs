@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using TheMovies.Model;
+using TheMovies.Repository;
 using TheMovies.MVVM;
 
 namespace TheMovies.ViewModel
@@ -21,6 +21,14 @@ namespace TheMovies.ViewModel
             movie = selectedMovie;
         }
         Movie movie;
+        private int _id;
+
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
         private string _title = "Ny Film.";
         
         public string Title 

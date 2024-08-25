@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheMovies.ViewModel;
 using System.Linq.Expressions;
+using TheMovies.Repository;
 
 namespace TheMovies.View
 {
@@ -25,7 +26,8 @@ namespace TheMovies.View
         {
             InitializeComponent();
             DialogVisitor visitor = new DialogVisitor();
-            MovieRepoViewModel vm = new MovieRepoViewModel(visitor);
+            var movieRepository = new MovieRepository();
+            MovieRepoViewModel vm = new MovieRepoViewModel(visitor, movieRepository);
             
             DataContext = vm;
         }

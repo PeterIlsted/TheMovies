@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using TheMovies.Model;
+using TheMovies.Repository;
 using TheMovies.MVVM;
 
 namespace TheMovies.ViewModel
@@ -16,12 +16,14 @@ namespace TheMovies.ViewModel
     }
     public class MovieRepoViewModel : ViewModelBase
     {
+        private readonly IMovieRepository repository;
         public ObservableCollection<Movie> MovieRepo { get; set; }
         //public MovieRepoViewModel() { MovieRepo = new ObservableCollection<Movie>(); }
-        public MovieRepoViewModel(DialogVisitor visitor) 
+        public MovieRepoViewModel(DialogVisitor visitor, IMovieRepository Repository) 
         { 
             Visitor = visitor;
-            MovieRepo = new ObservableCollection<Movie>();
+            repository = Repository;
+            MovieRepo = new ObservableCollection<Movie>(repository.GetAllMovies());
         }
         public DialogVisitor Visitor { get; set; }
         
@@ -42,6 +44,7 @@ namespace TheMovies.ViewModel
             Movie movie = new Movie();
             Visitor.DynamicVisit(movie);
             MovieRepo.Add(movie);
+            repository.AddMovie(movie);
             
         }
 
@@ -58,6 +61,7 @@ namespace TheMovies.ViewModel
 
         public void DeleteMovie()
         {
+            repository.DeleteMovie(SelectedMovie.Id);
             MovieRepo.Remove(SelectedMovie);
         }
 
