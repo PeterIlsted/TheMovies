@@ -1,53 +1,66 @@
-﻿using System;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.Configuration.Attributes;
+using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Security.Policy;
 using TheMovies.Repository;
 
 namespace TheMovies.Model
 {
+    public class MovieMap : ClassMap<Movie>
+    {
+        public MovieMap()
+        {
+            Map(m => m.Title).Name("Titel");
+            Map(m => m.Duration).Name("Varighed"); // Mapped to the correct header in CSV
+            Map(m => m.Genre).Name("Genre");
+
+        }
+    }
     public class DataHandler
     {
-        private readonly string filePath;
+        private readonly string filePath = "C:\\Users\\pibm9\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Dokumenter\\Datamatiker\\Programmering\\2. semester\\TheMovies";
+        
 
         public DataHandler(string filePath)
         {
+            this.filePath = filePath;
             if (string.IsNullOrEmpty(filePath))
                 throw new ArgumentNullException(nameof(filePath));
 
-            this.filePath = filePath;
+            
+
+        }
+        public DataHandler() 
+        {
+            
+
+        }
+        public List<Movie> GetMovies()
+        {
+            Movie movie;
+            List<Movie> movies = new List<Movie>();
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                NewLine = Environment.NewLine,
+            };
+            using (var reader = new StreamReader("C:\\Users\\pibm9\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Dokumenter\\Datamatiker\\Programmering\\2. semester\\TheMovies\\TheMoviesMovies.csv"))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                csv.Context.RegisterClassMap<MovieMap>();
+                var records = csv.GetRecords<Movie>().ToList();
+                movies.AddRange(records);
+            }
+            return movies;
         }
 
         // Læs data fra CSV-fil og konverter til en liste af Movie objekter
-        public List<Movie> LoadMovies()
-        {
-            var movies = new List<Movie>();
-
-            if (!File.Exists(filePath))
-                return movies;
-
-            var lines = File.ReadAllLines(filePath);
-
-            foreach (var line in lines.Skip(1)) // Skip header row
-            {
-                var values = line.Split(',');
-                if (values.Length != 4) continue; // Skip invalid lines
-
-                if (!int.TryParse(values[0], out int id))
-                    continue; // Skip lines with invalid ID
-
-                string title = values[1];
-
-                if (!TimeSpan.TryParseExact(values[2], @"hh\:mm\:ss", CultureInfo.InvariantCulture, out TimeSpan duration))
-                    continue; // Skip lines with invalid duration
-
-                string genre = values[3];
-
-                movies.Add(new Movie(title, duration, genre, id));
-            }
-
-            return movies;
-        }
+        
     }
 }

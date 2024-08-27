@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TheMovies.Repository;
+using TheMovies.ViewModel;
 
 namespace TheMovies.View
 {
-    public interface IDialogVisitor
-    {
-        Movie DynamicVisit(Movie data);
-    }
+    
 
     public class DialogVisitorImpl : IDialogVisitor
     {

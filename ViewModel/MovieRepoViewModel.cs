@@ -8,22 +8,24 @@ using TheMovies.View;
 
 namespace TheMovies.ViewModel
 {
+    public interface IDialogVisitor
+    {
+        Movie DynamicVisit(Movie data);
+    }
     public class MovieRepoViewModel : ViewModelBase
     {
         private readonly IMovieRepository repository;
-        private DataHandler dataHandler;
         public ObservableCollection<Movie> MovieRepo { get; set; }
         public IDialogVisitor Visitor { get; set; }
 
         // Konstruktør
-        public MovieRepoViewModel(IDialogVisitor visitor, IMovieRepository repository, DataHandler dataHandler)
+        public MovieRepoViewModel(IDialogVisitor visitor, IMovieRepository Repository)
         {
-            this.dataHandler = dataHandler ?? throw new ArgumentNullException(nameof(dataHandler));
-            Visitor = visitor ?? throw new ArgumentNullException(nameof(visitor));
-            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            Visitor = visitor;
+            repository = Repository;
             MovieRepo = new ObservableCollection<Movie>(repository.GetAllMovies());
         }
-
+        
         private Movie _selectedItem;
         public Movie SelectedMovie
         {
@@ -35,34 +37,7 @@ namespace TheMovies.ViewModel
             }
         }
 
-        public DataHandler DataHandler
-        {
-            get { return dataHandler; }
-            set
-            {
-                if (dataHandler != value)
-                {
-                    dataHandler = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        // Kommando til at åbne CSV filen
-        public ICommand OpenFileCommand => new RelayCommand(execute => OpenFile());
-
-        private void OpenFile()
-        {
-            if (dataHandler == null)
-                throw new InvalidOperationException("DataHandler is not set.");
-
-            var movies = dataHandler.LoadMovies();
-            MovieRepo.Clear();
-            foreach (var movie in movies)
-            {
-                MovieRepo.Add(movie);
-            }
-        }
+        
 
         public void AddMovie()
         {

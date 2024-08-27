@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheMovies.Model;
 
 
 namespace TheMovies.Repository
@@ -10,14 +11,22 @@ namespace TheMovies.Repository
     internal class MovieRepository : IMovieRepository
     {
         private List<Movie> _movieRepo = new List<Movie>();
+
+        private DataHandler dataHandler = new DataHandler();
         public MovieRepository() 
         {
-            _movieRepo.Add(new Movie("MLP - Horror at Ponyvile", new TimeSpan(01, 45, 00), "Familiefilm", 1));
-            _movieRepo.Add(new Movie("Rouladens historie gennem tiderne", new TimeSpan(2, 35, 00), "Systemkritisk Naturalistisk Dokumentar", 2));
+            AddRepo();
+        }
+        public void AddRepo()
+        {
+            List<Movie> movies = dataHandler.GetMovies();
+            foreach (Movie movie in movies) { AddMovie(movie); }
         }
         public void AddMovie(Movie movie)
         {
-            movie.Id = _movieRepo.Max(m => m.Id) + 1;
+            if(_movieRepo.Count == 0) { movie.Id = 0; }
+            else
+                movie.Id = _movieRepo.Max(m => m.Id) + 1;
             _movieRepo.Add(movie);
         }
 

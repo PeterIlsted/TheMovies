@@ -13,31 +13,30 @@ namespace TheMovies.View
         public MovieRepoWindow()
         {
             InitializeComponent();
-
-            string placeholderFilePath = "Uge33-TheMovies.CSV";  // Placeholder eller standard filsti
-            viewModel = new MovieRepoViewModel(new DialogVisitorImpl(), new MovieRepository(), new DataHandler(placeholderFilePath));
+            string placeholderFilePath = null;
+            viewModel = new MovieRepoViewModel(new DialogVisitorImpl(), new MovieRepository());
             DataContext = viewModel;
         }
 
         private void OpenFileDialog()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*",
-                Title = "Select a CSV file"
-            };
+            //OpenFileDialog openFileDialog = new OpenFileDialog
+            //{
+            //    Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*",
+            //    Title = "Select a CSV file"
+            //};
 
-            if (openFileDialog.ShowDialog() == true)
-            {
-                // Update DataHandler with the selected file path
-                viewModel.DataHandler = new DataHandler(openFileDialog.FileName);
+            //if (openFileDialog.ShowDialog() == true)
+            //{
+            //    // Update DataHandler with the selected file path
+            //    viewModel.DataHandler = new DataHandler(openFileDialog.FileName);
 
-                if (viewModel.OpenFileCommand.CanExecute(null))
-                {
-                    viewModel.OpenFileCommand.Execute(null);
-                }
+            //    if (viewModel.OpenFileCommand.CanExecute(null))
+            //    {
+            //        viewModel.OpenFileCommand.Execute(null);
+            //    }
                
-            }
+            //}
 
         }
 
