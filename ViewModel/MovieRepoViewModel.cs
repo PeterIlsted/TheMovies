@@ -7,15 +7,19 @@ using System.Text;
 using System.Threading.Tasks;
 using TheMovies.Repository;
 using TheMovies.MVVM;
+using TheMovies.Model;
+using Microsoft.Win32;
 
 namespace TheMovies.ViewModel
 {
     public interface DialogVisitor
     {
         Movie DynamicVisit(Movie data);
+        string DynamicVisit(OpenFileDialog data);
     }
     public class MovieRepoViewModel : ViewModelBase
     {
+        DataHandler handler = new DataHandler();
         private readonly IMovieRepository repository;
         public ObservableCollection<Movie> MovieRepo { get; set; }
         //public MovieRepoViewModel() { MovieRepo = new ObservableCollection<Movie>(); }
@@ -65,9 +69,25 @@ namespace TheMovies.ViewModel
             MovieRepo.Remove(SelectedMovie);
         }
 
+        public void LoadRepo() 
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            if (Visitor == null) throw new InvalidOperationException("Visitor is not set.");
+            string filePath = Visitor.DynamicVisit(dialog);
+            List<Movie> NewRepo = handler.GetMovies(filePath);
+
+        }
+        public void SaveRepo()
+        {
+            List<Movie> movies = MovieRepo.ToList();
+            handler.SaveMovies(movies);
+        }
+
         public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteMovie(), CanExecute => SelectedMovie != null);
         public RelayCommand EditCommand => new RelayCommand(execute => EditMovie(SelectedMovie), canExecute => SelectedMovie != null);
         public RelayCommand NewCommand => new RelayCommand(execute => AddMovie());
+        public RelayCommand LoadCommand => new RelayCommand(execute => LoadRepo());
+        public RelayCommand SaveCommand => new RelayCommand(execute => SaveRepo());
     }
         
 }
